@@ -39,8 +39,7 @@ typeof ctx (Segundo e) = case typeof ctx e of
                             Just (TPair t1 t2) -> Just t2
                             _                  -> Nothing
 typeof ctx (Pair e1 e2) = case (typeof ctx e1, typeof ctx e2) of
-                            (Just TBool, Just TBool) -> Just TBool
-                            (Just TNum, Just TNum)   -> Just TNum
+                            (Just t1, Just t2) -> Just (TPair t1 t2)
                             _                         -> Nothing
 typeof ctx (Let v e1 e2) = case typeof ctx e1 of 
                              Just t1 -> typeof ((v, t1):ctx) e2
